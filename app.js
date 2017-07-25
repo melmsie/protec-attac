@@ -30,12 +30,14 @@ client.on('message', async msg => {
 		metrics.increment('invites.killed')
 	}
 
+	if (!msg.content.toLowerCase().startsWith(config.prefix) || !command) {
+		return
+	}
+
 	try {
 		delete require.cache[require.resolve(`./commands/${command}`)]
 		if (!msg.channel.permissionsFor(client.user.id).has(['SEND_MESSAGES', 'EMBED_LINKS']))
-			return msg.author.send(`I either don't have permission to send messages or I don't have permission to embed links in #${msg.channel.name}`).catch(err => {
-				console.log(err.stack)
-			})
+			return 
 		require(`./commands/${command}`).run(client, msg, args, config, Discord)
 	} catch (e) {
 		if (e.message.includes('Cannot find module')) return
