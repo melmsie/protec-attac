@@ -9,7 +9,7 @@ const metrics = require('datadog-metrics')
 metrics.init({
 	apiKey: config.datadog.APIkey,
 	appKey: config.datadog.APPkey,
-	flushIntervalSeconds: 1,
+	flushIntervalSeconds: 3,
 	prefix: 'protec.'
 })
 
@@ -39,6 +39,7 @@ client.on('message', async msg => {
 		if (!msg.channel.permissionsFor(client.user.id).has(['SEND_MESSAGES', 'EMBED_LINKS']))
 			return 
 		require(`./commands/${command}`).run(client, msg, args, config, Discord)
+		metrics.increment('total.commands')
 	} catch (e) {
 		if (e.message.includes('Cannot find module')) return
 		return console.log(e)
@@ -83,7 +84,7 @@ function collectTechnicalStats() {
 	metrics.gauge('ram.rss', (memUsage.rss / 1048576).toFixed())
 	metrics.gauge('ram.heapUsed', (memUsage.heapUsed / 1048576).toFixed())
 	metrics.gauge('ping', client.ping.toFixed(0))
-
+	metrics.gauge('current.uptime', process.uptime())
 }
 
 function collectBotStats() {
