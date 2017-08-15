@@ -71,6 +71,7 @@ client.once('ready', () => {
 
 	setInterval(collectTechnicalStats, 3000)
 	setInterval(collectBotStats, 30000)
+	setInterval(collectBotListStats, 20000)
 })
 
 process.on('unhandledRejection', err => {
@@ -91,4 +92,33 @@ function collectBotStats() {
 	metrics.gauge('totalGuilds', client.guilds.size)
 	metrics.gauge('totalUsers', client.users.size)
 
+}
+
+async function collectBotStats () {
+	let memer = await snekfetch.get(`https://discordbots.org/api/bots/270904126974590976/stats`)
+	let mantaro = await snekfetch.get(`https://discordbots.org/api/bots/213466096718708737/stats`)
+	let boobs = await snekfetch.get(`https://discordbots.org/api/bots/285480424904327179/stats`)
+	let neko = await snekfetch.get(`https://discordbots.org/api/bots/334186716770598912/stats`)
+	let toasty = await snekfetch.get(`https://discordbots.org/api/bots/208946659361554432/stats`)
+	let spotisearch = await snekfetch.get(`https://discordbots.org/api/bots/303904389968560129/stats`)
+	let rmb = await snekfetch.get(`https://discordbots.org/api/bots/290947970457796608/stats`)
+	let jim = await snekfetch.get(`https://discordbots.org/api/bots/313749262687141888/stats`)
+	let ub = await snekfetch.get(`https://discordbots.org/api/bots/292953664492929025/stats`)
+	let gtn = await snekfetch.get(`https://discordbots.org/api/bots/307994108792799244/stats`)
+	let bad = await snekfetch.get(`https://bots.discord.pw/api/bots/249303797371895820/stats`)
+	let xiao = await snekfetch.get(`https://bots.discord.pw/api/bots/278305350804045834/stats`)
+	
+	metrics.gauge('botlist.memer', memer.body.server_count)
+	metrics.gauge('botlist.mantaro', mantaro.body.server_count)
+	metrics.gauge('botlist.boobs', boobs.body.server_count)
+	metrics.gauge('botlist.neko', neko.body.server_count)
+	metrics.gauge('botlist.toasty', toasty.body.server_count)
+	metrics.gauge('botlist.spotisearch', spotisearch.body.server_count)
+	metrics.gauge('botlist.rmb', rmb.body.server_count)
+	metrics.gauge('botlist.jim', jim.body.server_count)
+	metrics.gauge('botlist.ub', ub.body.server_count)
+	metrics.gauge('botlist.gtn', gtn.body.server_count)
+	metrics.gauge('botlist.bad', bad.body.server_count)
+	metrics.gauge('botlist.xiao', xiao.body.server_count)
+	
 }
