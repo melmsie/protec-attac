@@ -105,8 +105,6 @@ async function collectBotListStats () {
 	let jim = await snekfetch.get(`https://discordbots.org/api/bots/313749262687141888/stats`)
 	let ub = await snekfetch.get(`https://discordbots.org/api/bots/292953664492929025/stats`)
 	let gtn = await snekfetch.get(`https://discordbots.org/api/bots/307994108792799244/stats`)
-	let bad = await snekfetch.get(`https://bots.discord.pw/api/bots/249303797371895820/stats`)
-	let xiao = await snekfetch.get(`https://bots.discord.pw/api/bots/278305350804045834/stats`)
 	
 	metrics.gauge('botlist.memer', memer.body.server_count)
 	metrics.gauge('botlist.mantaro', mantaro.body.server_count)
@@ -118,7 +116,5 @@ async function collectBotListStats () {
 	metrics.gauge('botlist.jim', jim.body.server_count)
 	metrics.gauge('botlist.ub', ub.body.server_count)
 	metrics.gauge('botlist.gtn', gtn.body.server_count)
-	metrics.gauge('botlist.bad', bad.body.server_count)
-	metrics.gauge('botlist.xiao', xiao.body.server_count)
 	
 }
