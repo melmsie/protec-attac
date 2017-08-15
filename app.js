@@ -94,7 +94,7 @@ function collectBotStats() {
 
 }
 
-async function collectBotStats () {
+async function collectBotListStats () {
 	let memer = await snekfetch.get(`https://discordbots.org/api/bots/270904126974590976/stats`)
 	let mantaro = await snekfetch.get(`https://discordbots.org/api/bots/213466096718708737/stats`)
 	let boobs = await snekfetch.get(`https://discordbots.org/api/bots/285480424904327179/stats`)
