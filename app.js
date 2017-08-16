@@ -119,7 +119,6 @@ async function collectBotListStats () {
 	metrics.gauge('botlist.jim', jim.body.server_count)
 	metrics.gauge('botlist.ub', ub.body.server_count)
 	metrics.gauge('botlist.gtn', gtn.body.server_count)
-	metrics.gauge('botlist.gtn', gtn.body.server_count)
 	metrics.gauge('botlist.Tsukasa', Tsukasa.body.server_count)
 	metrics.gauge('botlist.lolbot', lolbot.body.server_count)
 	metrics.gauge('botlist.bait', bait.body.server_count)
