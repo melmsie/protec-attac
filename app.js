@@ -95,7 +95,7 @@ function collectBotStats() {
 }
 
 async function collectBotListStats () {
-	let memer = await snekfetch.get(`https://discordbots.org/api/bots/270904126974590976/stats`)
+	let wolver = await snekfetch.get(`https://discordbots.org/api/bots/226393343385403403/stats`)
 	let mantaro = await snekfetch.get(`https://discordbots.org/api/bots/213466096718708737/stats`)
 	let boobs = await snekfetch.get(`https://discordbots.org/api/bots/285480424904327179/stats`)
 	let neko = await snekfetch.get(`https://discordbots.org/api/bots/334186716770598912/stats`)
@@ -105,8 +105,11 @@ async function collectBotListStats () {
 	let jim = await snekfetch.get(`https://discordbots.org/api/bots/313749262687141888/stats`)
 	let ub = await snekfetch.get(`https://discordbots.org/api/bots/292953664492929025/stats`)
 	let gtn = await snekfetch.get(`https://discordbots.org/api/bots/307994108792799244/stats`)
+	let Tsukasa = await snekfetch.get(`https://discordbots.org/api/bots/254518325474885632/stats`)
+	let lolbot = await snekfetch.get(`https://discordbots.org/api/bots/272549225454239744/stats`)
+	let bait = await snekfetch.get(`https://discordbots.org/api/bots/335574674719113226/stats`)
 	
-	metrics.gauge('botlist.memer', memer.body.server_count)
+	metrics.gauge('botlist.wolver', wolver.body.server_count)
 	metrics.gauge('botlist.mantaro', mantaro.body.server_count)
 	metrics.gauge('botlist.boobs', boobs.body.server_count)
 	metrics.gauge('botlist.neko', neko.body.server_count)
@@ -116,5 +119,8 @@ async function collectBotListStats () {
 	metrics.gauge('botlist.jim', jim.body.server_count)
 	metrics.gauge('botlist.ub', ub.body.server_count)
 	metrics.gauge('botlist.gtn', gtn.body.server_count)
-	
+	metrics.gauge('botlist.gtn', gtn.body.server_count)
+	metrics.gauge('botlist.Tsukasa', Tsukasa.body.server_count)
+	metrics.gauge('botlist.lolbot', lolbot.body.server_count)
+	metrics.gauge('botlist.bait', bait.body.server_count)
 }
