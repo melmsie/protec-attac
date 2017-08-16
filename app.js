@@ -108,6 +108,8 @@ async function collectBotListStats () {
 	let Tsukasa = await snekfetch.get(`https://discordbots.org/api/bots/254518325474885632/stats`)
 	let lolbot = await snekfetch.get(`https://discordbots.org/api/bots/272549225454239744/stats`)
 	let bait = await snekfetch.get(`https://discordbots.org/api/bots/335574674719113226/stats`)
+	let Konata = await snekfetch.get(`https://discordbots.org/api/bots/304789135124594698/stats`)
+	let Hatsune = await snekfetch.get(`https://discordbots.org/api/bots/346348688450387971/stats`)
 	
 	metrics.gauge('botlist.wolver', wolver.body.server_count)
 	metrics.gauge('botlist.mantaro', mantaro.body.server_count)
@@ -122,4 +124,6 @@ async function collectBotListStats () {
 	metrics.gauge('botlist.Tsukasa', Tsukasa.body.server_count)
 	metrics.gauge('botlist.lolbot', lolbot.body.server_count)
 	metrics.gauge('botlist.bait', bait.body.server_count)
+	metrics.gauge('botlist.Konata', Konata.body.server_count)
+	metrics.gauge('botlist.Hatsune', Hatsune.body.server_count)
 }
