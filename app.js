@@ -19,8 +19,9 @@ client.on('message', async msg => {
 
 	let command = msg.content.slice(config.prefix.length).toLowerCase().split(' ')[0]
 	const args = msg.content.split(' ').slice(1)
+	const regex = new RegExp('(?:https?:\/\/)?discord(?:\.gg|\.com|app\.com\/invite)\/([A-Za-z0-9]+)', 'g')
 
-	if (msg.content.includes('discord.gg')) {
+	if (regex.test(msg.content)) {
 
 		msg.delete()
 		.then(() => msg.channel.send('**I protec**: Invite deleted')
@@ -107,7 +108,6 @@ async function collectBotListStats () {
 	let gtn = await snekfetch.get(`https://discordbots.org/api/bots/307994108792799244/stats`)
 	let Tsukasa = await snekfetch.get(`https://discordbots.org/api/bots/254518325474885632/stats`)
 	let lolbot = await snekfetch.get(`https://discordbots.org/api/bots/272549225454239744/stats`)
-	let bait = await snekfetch.get(`https://discordbots.org/api/bots/335574674719113226/stats`)
 	let Konata = await snekfetch.get(`https://discordbots.org/api/bots/304789135124594698/stats`)
 	let Hatsune = await snekfetch.get(`https://discordbots.org/api/bots/346348688450387971/stats`)
 	let Rythm = await snekfetch.get(`https://discordbots.org/api/bots/235088799074484224/stats`)
@@ -124,7 +124,6 @@ async function collectBotListStats () {
 	metrics.gauge('botlist.gtn', gtn.body.server_count)
 	metrics.gauge('botlist.Tsukasa', Tsukasa.body.server_count)
 	metrics.gauge('botlist.lolbot', lolbot.body.server_count)
-	metrics.gauge('botlist.bait', bait.body.server_count)
 	metrics.gauge('botlist.Konata', Konata.body.server_count)
 	metrics.gauge('botlist.Hatsune', Hatsune.body.server_count)
 	metrics.gauge('botlist.Rythm', Rythm.body.server_count)
