@@ -96,35 +96,26 @@ function collectBotStats() {
 }
 
 async function collectBotListStats () {
-	let wolver = await snekfetch.get(`https://discordbots.org/api/bots/226393343385403403/stats`)
-	let mantaro = await snekfetch.get(`https://discordbots.org/api/bots/213466096718708737/stats`)
-	let boobs = await snekfetch.get(`https://discordbots.org/api/bots/285480424904327179/stats`)
-	let neko = await snekfetch.get(`https://discordbots.org/api/bots/334186716770598912/stats`)
-	let toasty = await snekfetch.get(`https://discordbots.org/api/bots/208946659361554432/stats`)
-	let spotisearch = await snekfetch.get(`https://discordbots.org/api/bots/303904389968560129/stats`)
-	let rmb = await snekfetch.get(`https://discordbots.org/api/bots/290947970457796608/stats`)
-	let jim = await snekfetch.get(`https://discordbots.org/api/bots/313749262687141888/stats`)
-	let ub = await snekfetch.get(`https://discordbots.org/api/bots/292953664492929025/stats`)
-	let gtn = await snekfetch.get(`https://discordbots.org/api/bots/307994108792799244/stats`)
-	let Tsukasa = await snekfetch.get(`https://discordbots.org/api/bots/254518325474885632/stats`)
-	let lolbot = await snekfetch.get(`https://discordbots.org/api/bots/272549225454239744/stats`)
-	let Konata = await snekfetch.get(`https://discordbots.org/api/bots/304789135124594698/stats`)
-	let Hatsune = await snekfetch.get(`https://discordbots.org/api/bots/346348688450387971/stats`)
-	let Rythm = await snekfetch.get(`https://discordbots.org/api/bots/235088799074484224/stats`)
+	const bots = {
+		'wolver': '226393343385403403',
+		'mantaro': '213466096718708737',
+		'boobs': '285480424904327179',
+		'neko': '334186716770598912',
+		'toasty': '208946659361554432',
+		'spotisearch': '303904389968560129',
+		'rmb': '290947970457796608',
+		'jim': '313749262687141888',
+		'ub': '292953664492929025',
+		'gtn': '307994108792799244',
+		'Tsukasa': '254518325474885632',
+		'lolbot': '272549225454239744',
+		'Konata': '304789135124594698',
+		'Hatsune': '346348688450387971',
+		'Rythm': '235088799074484224'
+	}
 	
-	metrics.gauge('botlist.wolver', wolver.body.server_count)
-	metrics.gauge('botlist.mantaro', mantaro.body.server_count)
-	metrics.gauge('botlist.boobs', boobs.body.server_count)
-	metrics.gauge('botlist.neko', neko.body.server_count)
-	metrics.gauge('botlist.toasty', toasty.body.server_count)
-	metrics.gauge('botlist.spotisearch', spotisearch.body.server_count)
-	metrics.gauge('botlist.rmb', rmb.body.server_count)
-	metrics.gauge('botlist.jim', jim.body.server_count)
-	metrics.gauge('botlist.ub', ub.body.server_count)
-	metrics.gauge('botlist.gtn', gtn.body.server_count)
-	metrics.gauge('botlist.Tsukasa', Tsukasa.body.server_count)
-	metrics.gauge('botlist.lolbot', lolbot.body.server_count)
-	metrics.gauge('botlist.Konata', Konata.body.server_count)
-	metrics.gauge('botlist.Hatsune', Hatsune.body.server_count)
-	metrics.gauge('botlist.Rythm', Rythm.body.server_count)
+	for (const bot in bots) {
+		const { body: { server_count } } = await snekfetch.get(`https://discordbots.org/api/bots/${bots[bot]}/stats`)
+		metrics.gauge(`botlist.${bot}`, server_count)
+	}
 }
